@@ -1,0 +1,9 @@
+import pandas as pd
+
+df = pd.read_csv("data/processed/sentiment_results.csv")
+
+agg_df = df.groupby(['bank', 'rating', 'sentiment_label']).size().reset_index(name='count')
+output_csv = "data/processed/aggregated_sentiment_result.csv"
+agg_df.to_csv(output_csv, index=False)
+
+print(f"✅ Aggregation saved to {output_csv}")
